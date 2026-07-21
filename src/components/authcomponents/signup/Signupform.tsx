@@ -3,6 +3,9 @@
 import { useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { authClient } from "@/lib/auth-client";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 const initialState = {
   name: "",
@@ -14,7 +17,12 @@ const initialState = {
 
 export default function Signupform() {
   const [form, setForm] = useState(initialState);
+  const [loading, setLoading]= useState(false);
+  const [error,setError]= useState("");
+  const router = useRouter();
 
+
+// handle password stuffs
   const passwordChecks = useMemo(() => {
     const password = form.password;
     return {
@@ -28,16 +36,42 @@ export default function Signupform() {
 
   const isPasswordValid = Object.values(passwordChecks).slice(0, 4).every(Boolean);
 
+
+
+  // set form data
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+
+  //manage  submissions
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!isPasswordValid || !passwordChecks.match) return;
-    console.log("Signup submitted", form);
+
+    setLoading(true);
+    setError("");
+
+    const {data, error} = await authClient.signUp.email({
+        name:form.name,
+        email: form.email,
+        password: form.password,
+        image: form.profileImage || undefined,
+    });
+
+    setLoading(false);
+     if (error) {
+      toast.error(error.message || "Something went wrong. Please try again.");
+      return;
+    }
+
+    toast.success("Account created! Welcome to Adhunik Boighor.");
+    router.push("/");
   };
+
+    console.log("Signup submitted", form);
+
 
   return (
     <div className="min-h-screen px-4 py-8 sm:px-6 lg:px-8">
