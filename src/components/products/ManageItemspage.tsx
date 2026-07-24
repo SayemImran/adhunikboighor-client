@@ -76,7 +76,7 @@ export default function ManageItemsPage() {
                     </p>
                 </div>
                 <Link
-                    href="/items/add"
+                    href="/dashboard/admin/items/add"
                     className="rounded-full bg-[var(--primary-accent)] px-5 py-2.5 text-sm font-semibold text-white shadow-[0_8px_20px_rgba(201,123,74,0.25)] transition-transform duration-200 hover:-translate-y-0.5"
                 >
                     + Add book
@@ -165,7 +165,7 @@ export default function ManageItemsPage() {
                                                 <Eye size={15} strokeWidth={1.75} />
                                             </Link>
                                             <Link
-                                                href={`/items/edit/${book._id}`}
+                                                href={`/dashboard/admin/items/edit/${book._id}`}
                                                 title="Edit"
                                                 className="flex h-8 w-8 items-center justify-center rounded-full border border-[var(--glass-border)] bg-white/20 text-[var(--text-color)] transition-colors hover:bg-white/30"
                                             >
