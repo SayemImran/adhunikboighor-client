@@ -3,8 +3,12 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { authClient } from "@/lib/auth-client";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 export default function Lognform() {
+  const router = useRouter();
   const [form, setForm] = useState({ email: "", password: "" });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -12,8 +16,22 @@ export default function Lognform() {
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const { error } = await authClient.signIn.email({
+      email: form.email,
+      password: form.password,
+    });
+
+    if(!error){
+      toast.success("Login success");
+      router.push("/");
+      window.location.href = "/";
+    }
+    else{
+      toast.error(error.message || "Login failed");
+      return;
+    }
     console.log("Login submitted", form);
   };
 
@@ -25,11 +43,11 @@ export default function Lognform() {
             <Image src="/assets/logo.svg" alt="Adhunikboighor logo" width={192} height={192} className="drop-shadow-[0_10px_20px_rgba(58,42,29,0.18)]" />
             <div>
               <span className="text-[26px] font-medium tracking-tight text-[var(--text-color)]">
-                    Adhunik
-                </span>
-                <span className="text-[26px] font-medium italic tracking-tight text-[var(--primary-accent)]">
-                    Boighor
-                </span>
+                Adhunik
+              </span>
+              <span className="text-[26px] font-medium italic tracking-tight text-[var(--primary-accent)]">
+                Boighor
+              </span>
               <h2 className="mt-2 text-xl font-semibold text-[var(--text-color)]">Welcome back</h2>
             </div>
           </div>
