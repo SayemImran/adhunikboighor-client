@@ -6,6 +6,8 @@ import Footer from "@/components/home/Footer";
 import { Toaster } from "sonner";
 import QueryProvider from "@/providers/QueryProvider";
 import Chatwidget from "./../components/chat/Chatwidget";
+import FeaturedBooks from "@/components/home/FeaturedBooks";
+import Categories from "@/components/home/Categories";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -38,6 +40,8 @@ export default function RootLayout({
           <main>
             {children}
           </main>
+          <FeaturedBooks/>
+          <Categories/>
           <Chatwidget/>
           <Footer />
           <Toaster

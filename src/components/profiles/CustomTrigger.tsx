@@ -1,6 +1,7 @@
 import { authClient } from "@/lib/auth-client";
 import { ArrowRightFromSquare, Gear, Persons } from "@gravity-ui/icons";
 import { Avatar, Dropdown, Label } from "@heroui/react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 
@@ -12,6 +13,7 @@ type User = {
     image?: string | null;
     createdAt: Date;
     updatedAt: Date;
+    role:string;
 }
 
 type CustomTriggerProps = {
@@ -55,8 +57,11 @@ export default function CustomTrigger({ userData }: CustomTriggerProps) {
                     </div>
                 </div>
                 <Dropdown.Menu>
+                    
                     <Dropdown.Item id="dashboard" textValue="Dashboard">
+                        <Link href={`/dashboard/${userData.role}`}>
                         <Label>Dashboard</Label>
+                        </Link>
                     </Dropdown.Item>
                     <Dropdown.Item id="profile" textValue="Profile">
                         <Label>Profile</Label>
