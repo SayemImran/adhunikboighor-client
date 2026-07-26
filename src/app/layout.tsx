@@ -8,6 +8,10 @@ import QueryProvider from "@/providers/QueryProvider";
 import Chatwidget from "./../components/chat/Chatwidget";
 import FeaturedBooks from "@/components/home/FeaturedBooks";
 import Categories from "@/components/home/Categories";
+import WhyChooseUs from "@/components/home/WhyChooseUs";
+import Testimonials from "@/components/home/Testimonials";
+import Newsletter from "@/components/home/Newsletter";
+import FAQ from "@/components/home/FAQ";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -42,6 +46,10 @@ export default function RootLayout({
           </main>
           <FeaturedBooks/>
           <Categories/>
+          <WhyChooseUs/>
+          <Testimonials/>
+          <Newsletter/>
+          <FAQ/>
           <Chatwidget/>
           <Footer />
           <Toaster
