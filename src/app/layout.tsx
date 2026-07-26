@@ -5,6 +5,7 @@ import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/home/Footer";
 import { Toaster } from "sonner";
 import QueryProvider from "@/providers/QueryProvider";
+import Chatwidget from "./../components/chat/Chatwidget";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,23 +34,25 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <QueryProvider>
-        <Navbar />
-        <main>
-          {children}
-        </main>
-        <Footer />
-        <Toaster
-          position="top-center"
-          toastOptions={{
-            style: {
-              background: "rgba(255,255,255,0.7)",
-              backdropFilter: "blur(12px)",
-              border: "1px solid var(--glass-border)",
-              color: "var(--text-color)",
-              fontFamily: "Georgia, serif",
-            },
-          }}
-        />
+          <Navbar />
+          <main>
+            {children}
+          </main>
+          <Chatwidget/>
+          <Footer />
+          <Toaster
+            position="top-center"
+            toastOptions={{
+              style: {
+                background: "rgba(255,255,255,0.7)",
+                backdropFilter: "blur(12px)",
+                border: "1px solid var(--glass-border)",
+                color: "var(--text-color)",
+                fontFamily: "Georgia, serif",
+              },
+            }}
+          />
+          
         </QueryProvider>
       </body>
     </html>
