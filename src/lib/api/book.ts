@@ -43,7 +43,7 @@ export async function fetchBooks(query: BooksQuery = {}): Promise<BooksResponse>
   if (query.page) params.set("page", String(query.page));
   if (query.limit) params.set("limit", String(query.limit));
 
-  const res = await fetch(`http://localhost:5000/api/items?${params.toString()}`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/items?${params.toString()}`);
 
   if (!res.ok) {
     throw new Error("Failed to fetch books");

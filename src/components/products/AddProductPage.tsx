@@ -86,7 +86,7 @@ export default function AddProductPage() {
 
             const { token } = await tokenRes.json();
 
-            const res = await fetch("http://localhost:5000/api/items", {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/items`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
