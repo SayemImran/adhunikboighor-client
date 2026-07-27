@@ -6,23 +6,29 @@ import { MongoClient } from "mongodb";
 const client = new MongoClient(process.env.MONGODB_URI!);
 const db = client.db("adhunikboighor_db");
 export const auth = betterAuth({
-    database: mongodbAdapter(db, {
-        client
-    }),
-    emailAndPassword:{
-        enabled:true,
+  database: mongodbAdapter(db, {
+    client
+  }),
+  emailAndPassword: {
+    enabled: true,
+  },
+  socialProviders: {
+    google: {
+      clientId: process.env.GOOGLE_CLIENT_ID as string,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
     },
-    user:{
-        additionalFields:{
-            role:{
-                type:"string",
-                defaultValue:"buyer",
-                required:false,
-                input:false,
-            }
-        }
-    },
-    plugins: [
+  },
+  user: {
+    additionalFields: {
+      role: {
+        type: "string",
+        defaultValue: "buyer",
+        required: false,
+        input: false,
+      }
+    }
+  },
+  plugins: [
     jwt({
       jwt: {
         expirationTime: "15m",

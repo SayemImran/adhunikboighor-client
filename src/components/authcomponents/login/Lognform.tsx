@@ -16,6 +16,13 @@ export default function Lognform() {
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
+  const handleGoogleSignIn = async () => {
+    await authClient.signIn.social({
+      provider: "google",
+      callbackURL: "/",
+    });
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const { error } = await authClient.signIn.email({
@@ -23,12 +30,12 @@ export default function Lognform() {
       password: form.password,
     });
 
-    if(!error){
+    if (!error) {
       toast.success("Login success");
       router.push("/");
       window.location.href = "/";
     }
-    else{
+    else {
       toast.error(error.message || "Login failed");
       return;
     }
@@ -90,6 +97,14 @@ export default function Lognform() {
               className="w-full rounded-full bg-[var(--primary-accent)] px-4 py-3 text-sm font-semibold text-white shadow-[0_10px_24px_rgba(201,123,74,0.2)] transition-all duration-200 hover:-translate-y-0.5"
             >
               Sign in
+            </button>
+            <button
+              onClick={handleGoogleSignIn}
+              type="button"
+              className="flex w-full items-center justify-center gap-2 rounded-full border border-white/50 bg-white/25 px-4 py-3 text-sm font-medium text-[var(--text-color)] transition-all duration-200 hover:bg-white/35"
+            >
+              {/* Google icon svg here */}
+              Continue with Google
             </button>
 
             <p className="text-center text-sm text-[var(--text-muted)]">
