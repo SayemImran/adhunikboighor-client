@@ -20,7 +20,7 @@ type Book = {
 
 async function getBook(id: string): Promise<Book | null> {
     try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/items/${id}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/items/${id}`, {
             cache: "no-store",
         });
 

@@ -49,7 +49,7 @@ export default function EditPage() {
 
     const fetchBook = async () => {
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/items/${id}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/items/${id}`, {
           cache: "no-store",
         });
 
@@ -121,7 +121,7 @@ export default function EditPage() {
       if (!tokenRes.ok) throw new Error("Not authenticated");
       const { token } = await tokenRes.json();
 
-      const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/items/${id}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/items/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

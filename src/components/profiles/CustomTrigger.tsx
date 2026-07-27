@@ -13,9 +13,8 @@ type User = {
     image?: string | null;
     createdAt: Date;
     updatedAt: Date;
-    role:string;
+    role?: string;
 }
-
 type CustomTriggerProps = {
     userData: User;
 };
@@ -57,10 +56,10 @@ export default function CustomTrigger({ userData }: CustomTriggerProps) {
                     </div>
                 </div>
                 <Dropdown.Menu>
-                    
+
                     <Dropdown.Item id="dashboard" textValue="Dashboard">
-                        <Link href={`/dashboard/${userData.role}`}>
-                        <Label>Dashboard</Label>
+                        <Link href={`/dashboard/${userData.role ?? "buyer"}`}>
+                            <Label>Dashboard</Label>
                         </Link>
                     </Dropdown.Item>
                     <Dropdown.Item id="profile" textValue="Profile">

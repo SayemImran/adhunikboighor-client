@@ -26,7 +26,7 @@ export default function ManageItemsPage() {
     const fetchBooks = async () => {
         setLoading(true);
         try {
-            const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/items`);
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/items`);
             if (!res.ok) throw new Error("Failed to fetch books");
             const data = await res.json();
             setBooks(data.items || []);
@@ -47,7 +47,7 @@ export default function ManageItemsPage() {
             if (!tokenRes.ok) throw new Error("Not authenticated");
             const { token } = await tokenRes.json();
 
-            const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/items/${id}`, {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/items/${id}`, {
                 method: "DELETE",
                 headers: { Authorization: `Bearer ${token}` },
             });
