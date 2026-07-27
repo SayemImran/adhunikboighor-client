@@ -33,7 +33,7 @@ export default async function DashboardOverviewPage() {
             <StatCard icon={ShoppingBag} label="Orders placed" value="—" />
             <StatCard icon={BookOpen} label="Books wishlisted" value="—" />
             <StatCard icon={Star} label="Reviews given" value="—" />
-            <StatCard icon={Clock} label="Member since" value={formatYear(user)} />
+            <StatCard icon={Clock} label="Member since" value={formatYear(user.createdAt)} />
           </>
         )}
       </div>
@@ -124,8 +124,7 @@ function QuickAction({
   );
 }
 
-function formatYear(user: { createdAt?: Date }) {
-  const createdAt = (user as { createdAt?: Date }).createdAt;
+function formatYear(createdAt?: Date) {
   if (!createdAt) return "—";
   return new Date(createdAt).getFullYear().toString();
 }
