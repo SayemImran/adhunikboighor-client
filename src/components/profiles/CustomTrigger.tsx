@@ -13,7 +13,7 @@ type User = {
     image?: string | null;
     createdAt: Date;
     updatedAt: Date;
-    role?: string;
+    role?: string | null;
 }
 type CustomTriggerProps = {
     userData: User;
