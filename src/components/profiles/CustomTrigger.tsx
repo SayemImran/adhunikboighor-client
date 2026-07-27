@@ -34,7 +34,8 @@ export default function CustomTrigger({ userData }: CustomTriggerProps) {
                 <Avatar>
                     <Avatar.Image
                         alt="Junior Garcia"
-                        src={userData.image}
+                        src={userData.image ?? undefined}
+
                     />
                     <Avatar.Fallback delayMs={600}>JD</Avatar.Fallback>
                 </Avatar>
@@ -45,7 +46,8 @@ export default function CustomTrigger({ userData }: CustomTriggerProps) {
                         <Avatar size="sm">
                             <Avatar.Image
                                 alt="Jane"
-                                src={userData.image}
+                                src={userData.image ?? undefined}
+
                             />
                             <Avatar.Fallback delayMs={600}>JD</Avatar.Fallback>
                         </Avatar>
