@@ -17,7 +17,7 @@ import { authClient } from "@/lib/auth-client";
 
 const buyerNavItems = [
   { label: "Overview", href: "/dashboard", icon: LayoutDashboard },
-  { label: "Profile", href: "/dashboard/profile", icon: User },
+  { label: "Profile", href: "/dashboard/buyer/profile", icon: User },
   { label: "Settings", href: "/dashboard/settings", icon: Settings },
 ];
 
